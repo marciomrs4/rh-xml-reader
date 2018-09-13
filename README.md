@@ -1,4 +1,3 @@
-recursos-humanos
-================
+# rh-xml-reader
+Leitor de XML para Esocial
 
-A Symfony project created on August 21, 2018, 4:09 pm.
