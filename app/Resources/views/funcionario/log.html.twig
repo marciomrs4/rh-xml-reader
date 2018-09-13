@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{  parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/rhxmlreader/css/dataTables.bootstrap.min.css") }}">
+{% endblock %}
+
+
+{% block title %}Recursos Humanos{% endblock %}
+
+{% block page_title %} Funcionario {% endblock %}
+{% block page_sub_title %} Log {% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+
+                <a href="{{ path('funcionario_show',{ 'id' : funcionario.id }) }}">
+                    <button class="btn btn-primary btn-sm">
+                        <span class="fa fa-backward"></span>
+                        Voltar
+                    </button>
+                </a>
+
+            </div>
+
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                        <thead>
+                        <tr>
+                            <th>Objeto</th>
+                            <th>Ação</th>
+                            <th>Data</th>
+                            <th>Usuário</th>
+                            <th>Dados</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        {% for item in log %}
+                            <tr>
+                                <td>{{ item.objectClass }}</td>
+                                <td>{{ item.action }}</td>
+                                <td>{{ item.loggedAt | date('d-m-Y')}}</td>
+                                <td>{{ item.username }}</td>
+                                <td>
+                                    {% for key, val in item.data %}
+                                        [ O valor de "{{ key }}" está "{{ val }}" ]
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src='{{ asset('bundles/rhxmlreader/js/jquery.dataTables.min.js') }}'></script>
+    <script src='{{ asset('bundles/rhxmlreader/js/dataTables.bootstrap.min.js') }}'></script>
+
+    <script>
+
+        $(".table-datatable").DataTable({
+            "oLanguage": {
+                "oPaginate":{
+                    "sPrevious": "Anterior ",
+                    "sNext": " Proximo "
+                },
+                "sLengthMenu": "Mostrar _MENU_ resultado(s)",
+                "sSearch": "Pesquisar: ",
+                "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ resultado(s)",
+                "sInfoFiltered": "(Total: _MAX_ )",
+                "sZeroRecords": "Resultado nao encontrado",
+                "sInfoEmpty": "Sem resultados"
+            }
+        });
+
+    </script>
+
+{% endblock %}
+

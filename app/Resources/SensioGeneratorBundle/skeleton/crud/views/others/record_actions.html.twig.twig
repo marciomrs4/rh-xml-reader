@@ -1,0 +1,37 @@
+<a href="{{ "{{ path('" ~ route_name_prefix ~ "_index') }}" }}">
+    <button class="btn btn-primary btn-sm">
+        <span class="fa fa-backward"></span>
+        Voltar
+    </button>
+</a>
+
+{%- if ('edit' in actions) and (not hide_edit) %}
+
+<a href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', { '"~ identifier ~"': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}">
+    <button class="btn btn-primary btn-sm">
+        <span class="fa fa-edit"></span>
+        Editar
+    </button>
+</a>
+
+<a href="{{ "{{ path('" ~ route_name_prefix ~ "_log', { '"~ identifier ~"': " ~ entity_singularized ~ "."~ identifier ~" }) }}" }}">
+    <button class="btn btn-primary btn-sm">
+        <span class="fa fa-search"></span>
+        Log
+    </button>
+</a>
+
+{%- endif %}
+
+{%- if ('delete' in actions) and (not hide_delete) %}
+
+    {{ '{# {{ form_start(delete_form) }} #}' }}
+    {{
+    '{#   <button type="submit" class="btn btn-primary btn-sm">
+            <span class="fa fa-trash"></span>
+                Deletar
+        </button> #}'
+    }}
+    {{ '{# {{ form_end(delete_form) }} #}' }}
+
+{%- endif %}

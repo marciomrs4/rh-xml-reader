@@ -1,0 +1,32 @@
+
+    /**
+{% block phpdoc_method_header %}
+     * Finds and displays a log {{ entity_singularized }} entity.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/codigo/{codigo}", name="{{ route_name_prefix }}_text")
+     * @Method("GET")
+{% endif %}
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function findDescricaoByCodigoshowAction($codigo = null)
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        $entity = $this->getDoctrine()
+        ->getRepository('{{ bundle }}:{{ entity }}')
+        ->findOneBy(array('codigo' => $codigo));
+
+        if($entity == null){
+            return new Response('CODIGO NÃO ENCONTRADO');
+        }
+
+{% endblock method_body %}
+
+{% block method_return %}
+        return new Response($entity->getDescricao());
+{% endblock method_return %}
+    }

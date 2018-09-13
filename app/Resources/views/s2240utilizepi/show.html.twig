@@ -1,0 +1,63 @@
+    {% extends 'base.html.twig' %}
+
+{% block title %}Recursos Humanos{% endblock %}
+
+{% block page_title %} S2240utilizepi {% endblock %}
+{% block page_sub_title %} Mostrar {% endblock %}
+
+
+    {% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+
+                                        <a href="{{ path('s2240utilizepi_index') }}">
+    <button class="btn btn-primary btn-sm">
+        <span class="fa fa-backward"></span>
+        Voltar
+    </button>
+</a>
+    {# {{ form_start(delete_form) }} #}
+    {#   <button type="submit" class="btn btn-primary btn-sm">
+            <span class="fa fa-trash"></span>
+                Deletar
+        </button> #}
+    {# {{ form_end(delete_form) }} #}<a href="{{ path('s2240utilizepi_log', { 'id': s2240utilizepi.id }) }}">
+                        <button class="btn btn-primary btn-sm">
+                            <span class="fa fa-search"></span>
+                            Log
+                        </button>
+                    </a>
+
+                </div>
+
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                        <td>{{ s2240utilizepi.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Codigo</th>
+                                        <td>{{ s2240utilizepi.codigo }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Descricao</th>
+                                        <td>{{ s2240utilizepi.descricao }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

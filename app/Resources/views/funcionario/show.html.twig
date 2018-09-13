@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Funcionarios{% endblock %}
+
+{% block page_title %}Funcionários{% endblock %}
+{% block page_sub_title %} Mostrar {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+
+                <a href="{{ path('funcionario_new') }}">
+                    <button class="btn btn-primary btn-sm">
+                        <span class="fa fa-plus"></span>
+                        NOVO
+                    </button>
+                </a>
+
+                <a href="{{ path('funcionario_edit', { 'id': funcionario.id }) }}">
+                    <button class="btn btn-primary btn-sm">
+                        <span class="fa fa-edit"></span>
+                        Edit
+                    </button>
+                </a>
+
+                <a href="{{ path('funcionario_index') }}">
+                    <button class="btn btn-primary btn-sm">
+                        <span class="fa fa-backward"></span>
+                        Voltar
+                    </button>
+                </a>
+
+                <a href="{{ path('funcionario_log', { 'id': funcionario.id }) }}">
+                    <button class="btn btn-primary btn-sm">
+                        <span class="fa fa-search"></span>
+                        Log
+                    </button>
+                </a>
+
+            </div>
+
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+
+                        <tbody>
+
+                        <tr>
+                            <th>Nome</th>
+                            <td>{{ funcionario.nome }}</td>
+                        </tr>
+                        <tr>
+                            <th>Cpf</th>
+                            <td>{{ funcionario.cpf }}</td>
+                        </tr>
+                        <tr>
+                            <th>Drt</th>
+                            <td>{{ funcionario.drt }}</td>
+                        </tr>
+                        <tr>
+                            <th>Pis</th>
+                            <td>{{ funcionario.pis }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>{% if funcionario.status %}Ativo{% else %}Inativo{% endif %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

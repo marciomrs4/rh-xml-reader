@@ -1,0 +1,85 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Recursos Humanos{% endblock %}
+
+
+        {% block page_title %}
+
+        {% endblock %}
+
+        {% block page_sub_title %}
+
+        {% endblock %}
+
+
+{% block content %}
+
+    <div class="row">
+
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"></h3>
+                    </div>
+                    <div class="box-body">
+
+                        <div class="box box-widget widget-user">
+                            <!-- Add the bg color to the header using any of the bg-* classes -->
+                            <div class="widget-user-header bg-blue-active">
+                                <h3 class="widget-user-username">
+                                    <strong>CEADIS</strong>
+                                </h3>
+                                <h5 class="widget-user-desc">
+                                    Tecnologia
+                                </h5>
+                            </div>
+                            <div class="widget-user-image">
+                            </div>
+                            <div class="box-footer">
+                                <div class="row">
+                                    <div class="col-sm-4 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">RH</h5>
+                                            <span class="description-text">ESocial Leitor XML</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-sm-4 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">0.1.0</h5>
+                                            <span class="description-text">VERSÃO</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                    </div>
+
+                                    <div class="col-sm-4 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">{{ 'now' | date('Y') }}</h5>
+                                            <span class="description-text">TI-CEADIS</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                    </div>
+                                    <!-- /.col -->
+
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                        </div>
+                        <!-- /.widget-user -->
+
+
+                    </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+    <div class="col-md-3"></div>
+
+    </div>
+
+{% endblock %}

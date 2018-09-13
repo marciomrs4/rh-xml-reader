@@ -1,0 +1,506 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Leitura do XML S2220{% endblock %}
+
+{% block page_title %}Leitor do XML S2220 {% endblock %}
+
+{% block page_sub_title %}{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        {% for message in app.session.flashBag.get('notice') %}
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <i class="fa fa-info"></i> {{ message.message }}. <i class="fa fa-smile-o"></i>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                </div>
+                <div class="box-body">
+
+                    {{ form_start(form) }}
+
+                    {{ form_widget(form) }}
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% if errors %}
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Resumo do(s) erro(s) encontrado(s)</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>Mensagem</th>
+                                    <th>Linha</th>
+                                </tr>
+
+                                {% for erro in errors %}
+                                    <tr>
+                                        <td>{{ erro.message }}</td>
+                                        <td>{{ erro.line }}</td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+
+    {% for doc in s2220 %}
+
+        {#dtExm: {{ aso.exame.dtExm |date('d-m-Y') }}#}
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Funcionário</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>NOME</th>
+                                    <th>TAG XML</th>
+                                    <th>INFORMACAO</th>
+                                </tr>
+
+                                <tr>
+                                    <td>NOME</td>
+                                    <td>####</td>
+                                    <td>{{ render(controller('RHXMLReaderBundle:Funcionario:cpfShow',{ 'cpf': doc.ideVinculo.cpfTrab })) }} </td>
+                                </tr>
+
+                                <tr>
+                                    <td>CPF</td>
+                                    <td>cpfTrab</td>
+                                    <td>{{ doc.ideVinculo.cpfTrab }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>PIS</td>
+                                    <td>nisTrab</td>
+                                    <td>{{ doc.ideVinculo.nisTrab }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>DRT</td>
+                                    <td>matricula</td>
+                                    <td>{{ doc.ideVinculo.matricula }}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Identificação do Evento</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>NOME</th>
+                                    <th>TAG XML</th>
+                                    <th>INFORMACAO</th>
+                                </tr>
+
+                                <tr>
+                                    <td>Identificação do Evento</td>
+                                    <td>indRetif</td>
+                                    <td>{{ render(controller('RHXMLReaderBundle:S2220indRetif:findDescricaoByCodigoshow',{ 'codigo': doc.ideEvento.indRetif })) }} </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Número do Recibo</td>
+                                    <td>nrRecibo</td>
+                                    <td>{{ doc.ideEvento.nrRecibo }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Identificação do Ambiente</td>
+                                    <td>tpAmb</td>
+                                    <td>{{ render(controller('RHXMLReaderBundle:S2220tpAmb:findDescricaoByCodigoshow',{ 'codigo': doc.ideEvento.tpAmb })) }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Processo de Emissão do Evento</td>
+                                    <td>procEmi</td>
+                                    <td>{{ render(controller('RHXMLReaderBundle:S2220procemi:findDescricaoByCodigoshow',{ 'codigo' : doc.ideEvento.procEmi })) }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Versão do Processo de Emissão</td>
+                                    <td>verProc</td>
+                                    <td>{{ doc.ideEvento.verProc }}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Identificação do Empregador</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>NOME</th>
+                                    <th>TAG XML</th>
+                                    <th>INFORMACAO</th>
+                                </tr>
+
+                                <tr>
+                                    <td>Identificação do Empregador</td>
+                                    <td>tpInsc</td>
+                                    <td>
+                                        {% if doc.ideEmpregador.tpInsc == 1 %}
+                                            CNPJ
+                                        {% else %}
+                                            CPF
+                                        {% endif %}
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Inscrição Estadual </td>
+                                    <td>nrInsc</td>
+                                    <td>{{ doc.ideEmpregador.nrInsc }}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        {% for aso in doc.aso %}
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">ASO</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                    <tbody>
+
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>TAG XML</th>
+                                        <th>INFORMACAO</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Tipo de ASO</td>
+                                        <td>tpAso</td>
+                                        <td>{{ render(controller('RHXMLReaderBundle:S2220tpaso:findDescricaoByCodigoshow',{ 'codigo': aso.tpAso })) }} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Resultado do Aso</td>
+                                        <td>resAso</td>
+                                        <td>{{ render(controller('RHXMLReaderBundle:S2220resaso:findDescricaoByCodigoshow', { 'codigo' : aso.resAso })) }}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Responsável da Monitoração</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                    <tbody>
+
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>TAG XML</th>
+                                        <th>INFORMACAO</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Nis Responsável</td>
+                                        <td>nisResp</td>
+                                        <td>{{ aso.exame.respMonit.nisResp }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Número do Conselho (CRM / COREM)</td>
+                                        <td>nrConsClasse</td>
+                                        <td>{{ aso.exame.respMonit.nrConsClasse }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>UF do Conselho (CRM / COREM)</td>
+                                        <td>ufConsClasse</td>
+                                        <td>{{ aso.exame.respMonit.ufConsClasse }}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Exame</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                    <tbody>
+
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>TAG XML</th>
+                                        <th>INFORMACAO</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Data do Exame Realizado</td>
+                                        <td>dtExm</td>
+                                        <td>{{ aso.exame.dtExm | date('d-m-Y') }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Código do Procedimento Médico</td>
+                                        <td>procRealizado</td>
+                                        <td>{{ render(controller('RHXMLReaderBundle:S2220procrealizado:findDescricaoByCodigoshow',{ 'codigo' : aso.exame.procRealizado })) }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>OBS sobre Procedimento médico</td>
+                                        <td>obsProc</td>
+                                        <td>{{ aso.exame.obsProc }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Quadro NR07</td>
+                                        <td>interprExm</td>
+                                        <td>{{ render(controller('RHXMLReaderBundle:S2220interprexm:findDescricaoByCodigoshow',{ 'codigo': aso.exame.interprExm })) }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Ordem do exame</td>
+                                        <td>ordExame</td>
+                                        <td>{{ render(controller('RHXMLReaderBundle:S2220ordexame:findDescricaoByCodigoshow', { 'codigo' : aso.exame.ordExame })) }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Data do Inicio da monitoração</td>
+                                        <td>dtIniMonit</td>
+                                        <td>{{ aso.exame.dtIniMonit | date('d-m-Y') }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Data do Fim da monitoração</td>
+                                        <td>dtFimMonit</td>
+                                        <td>{{ aso.exame.dtFimMonit | date('d-m-Y') }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Indicação dos Resultados</td>
+                                        <td>indResult</td>
+                                        <td>{{ render(controller('RHXMLReaderBundle:S2220indresult:findDescricaoByCodigoshow',{'codigo': aso.exame.indResult})) }}</td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Médico</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                    <tbody>
+
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>TAG XML</th>
+                                        <th>INFORMACAO</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Médico Responsável</td>
+                                        <td>nmMed</td>
+                                        <td>{{ aso.ideServSaude.medico.nmMed }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Número (CRM / COREM)</td>
+                                        <td>nrCRM</td>
+                                        <td>{{ aso.ideServSaude.medico.crm.nrCRM }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>UF do Conselho (CRM / COREM)</td>
+                                        <td>ufCRM</td>
+                                        <td>{{ aso.ideServSaude.medico.crm.ufCRM }}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Serviço de Saúde Responsável</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                    <tbody>
+
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>TAG XML</th>
+                                        <th>INFORMACAO</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Codigo UN de Atendimento</td>
+                                        <td>codCNES</td>
+                                        <td>{{ aso.ideServSaude.codCNES }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Forma de contato</td>
+                                        <td>frmCtt</td>
+                                        <td>{{ aso.ideServSaude.frmCtt }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>E-mail</td>
+                                        <td>email</td>
+                                        <td>{{ aso.ideServSaude.email }}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    {% endfor %}
+
+
+{% endblock %}

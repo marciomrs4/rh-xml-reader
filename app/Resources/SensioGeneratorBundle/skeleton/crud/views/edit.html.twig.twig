@@ -1,0 +1,40 @@
+{% block extends %}
+{{ "{% extends 'base.html.twig' %}" }}
+{% endblock extends %}
+
+{{ "{% block title %}Recursos Humanos{% endblock %}" }}
+
+{{ "{% block page_title %}" }} {{ entity_singularized|capitalize }} {{ "{% endblock %}" }}
+{{ "{% block page_sub_title %} Editar {% endblock %}" }}
+
+
+{% block body %}
+    {{ "{% block content %}" }}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+
+                    {% set hide_edit, hide_delete = true, false %}
+                    {{ include('crud/views/others/record_actions.html.twig.twig') -}}
+
+                </div>
+
+                <div class="box-body">
+
+                    {{ '{{ form_start(edit_form) }}' }}
+                    {{ '{{ form_widget(edit_form) }}' }}
+                    <button class="btn btn-primary btn-sm">
+                        <span class="fa fa-edit"></span>
+                        Salvar
+                    </button>
+                    {{ '{{ form_end(edit_form) }}' }}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+   {{ "{% endblock %}" }}
+{% endblock body %}

@@ -1,0 +1,760 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Leitura do XML S2240{% endblock %}
+
+{% block page_title %}Leitor do XML S2240 {% endblock %}
+
+{% block page_sub_title %}{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        {% for message in app.session.flashBag.get('notice') %}
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <i class="fa fa-info"></i> {{ message.message }}. <i class="fa fa-smile-o"></i>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                </div>
+                <div class="box-body">
+
+                    {{ form_start(form) }}
+
+                    {{ form_widget(form) }}
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% if errors %}
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Resumo do(s) erro(s) encontrado(s)</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>Mensagem</th>
+                                    <th>Linha</th>
+                                </tr>
+
+                                {% for erro in errors %}
+                                    <tr>
+                                        <td>{{ erro.message }}</td>
+                                        <td>{{ erro.line }}</td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+
+    {% for doc in s2240 %}
+
+        {#dtExm: {{ aso.exame.dtExm |date('d-m-Y') }}#}
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Funcionário</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>NOME</th>
+                                    <th>TAG XML</th>
+                                    <th>INFORMACAO</th>
+                                </tr>
+
+                                <tr>
+                                    <td>NOME</td>
+                                    <td>####</td>
+                                    <td>{{ render(controller('RHXMLReaderBundle:Funcionario:cpfShow',{ 'cpf': doc.ideVinculo.cpfTrab })) }} </td>
+                                </tr>
+
+                                <tr>
+                                    <td>CPF</td>
+                                    <td>cpfTrab</td>
+                                    <td>{{ doc.ideVinculo.cpfTrab }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>PIS</td>
+                                    <td>nisTrab</td>
+                                    <td>{{ doc.ideVinculo.nisTrab }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>DRT</td>
+                                    <td>matricula</td>
+                                    <td>{{ doc.ideVinculo.matricula }}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Identificação do Evento</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>NOME</th>
+                                    <th>TAG XML</th>
+                                    <th>INFORMACAO</th>
+                                </tr>
+
+                                <tr>
+                                    <td>Identificação do Evento</td>
+                                    <td>indRetif</td>
+                                    <td>{{ render(controller('RHXMLReaderBundle:S2220indRetif:findDescricaoByCodigoshow',{ 'codigo': doc.ideEvento.indRetif })) }} </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Número do Recibo</td>
+                                    <td>nrRecibo</td>
+                                    <td>{{ doc.ideEvento.nrRecibo }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Identificação do Ambiente</td>
+                                    <td>tpAmb</td>
+                                    <td>{{ render(controller('RHXMLReaderBundle:S2220tpAmb:findDescricaoByCodigoshow',{ 'codigo': doc.ideEvento.tpAmb })) }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Processo de Emissão do Evento</td>
+                                    <td>procEmi</td>
+                                    <td>{{ render(controller('RHXMLReaderBundle:S2220procemi:findDescricaoByCodigoshow',{ 'codigo' : doc.ideEvento.procEmi })) }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Versão do Processo de Emissão</td>
+                                    <td>verProc</td>
+                                    <td>{{ doc.ideEvento.verProc }}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Identificação do Empregador</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>NOME</th>
+                                    <th>TAG XML</th>
+                                    <th>INFORMACAO</th>
+                                </tr>
+
+                                <tr>
+                                    <td>Identificação do Empregador</td>
+                                    <td>tpInsc</td>
+                                    <td>
+                                        {% if doc.ideEmpregador.tpInsc == 1 %}
+                                            CNPJ
+                                        {% else %}
+                                            CPF
+                                        {% endif %}
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Inscrição Estadual </td>
+                                    <td>nrInsc</td>
+                                    <td>{{ doc.ideEmpregador.nrInsc }}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações relativas ao responsável pelos registros ambientais</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-condensed table-hover table-striped">
+                                <tbody>
+
+                                <tr>
+                                    <th>NOME</th>
+                                    <th>TAG XML</th>
+                                    <th>INFORMACAO</th>
+                                </tr>
+
+                                {% for respReg in doc.infoExpRisco.respReg %}
+                                    <tr>
+                                        <td>Data de Inicio</td>
+                                        <td>dtIni</td>
+                                        <td>{{ respReg.dtIni | date('d-m-Y') }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Data Final</td>
+                                        <td>dtFim</td>
+                                        <td>{{ respReg.dtFim | date('d-m-Y') }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Nis Responsável</td>
+                                        <td>nisResp</td>
+                                        <td>{{ respReg.nisResp }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Número de Inscrição no órgão de classe</td>
+                                        <td>nrOc</td>
+                                        <td>{{ respReg.nrOc }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Sigla da UF do órgão de classe</td>
+                                        <td>ufOC</td>
+                                        <td>{{ respReg.ufOC }}</td>
+                                    </tr>
+
+
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        {% for iniExpRisco in doc.infoExpRisco.iniExpRisco %}
+
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Condições ambientais do trabalho - Início</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                    <tbody>
+
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>TAG XML</th>
+                                        <th>INFORMACAO</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Data</td>
+                                        <td>dtIniCondicao</td>
+                                        <td>{{ iniExpRisco.dtIniCondicao | date('d-m-Y') }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {% for infoAmb in iniExpRisco.infoAmb %}
+
+                                <div class="col-md-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="table-responsive">
+
+
+                                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                                    <tbody>
+
+                                                    <tr>
+                                                        <th>NOME</th>
+                                                        <th>TAG XML</th>
+                                                        <th>INFORMACAO</th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>código do ambiente de trabalho</td>
+                                                        <td>codAmb</td>
+                                                        <td>{{ infoAmb.codAmb}}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240codamb:findDescricaoByCodigoshow',{ 'codigo' : infoAmb.codAmb })) }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Descricão da Atividade</td>
+                                                        <td>dscAtivDes</td>
+                                                        <td>{{ infoAmb.infoAtiv.dscAtivDes }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Código do risco</td>
+                                                        <td>codFatRis</td>
+                                                        <td>{{ infoAmb.fatRisco.codFatRis }}
+                                                        {{ render(controller('RHXMLReaderBundle:S2240codfatris:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.codFatRis })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Exposição ao fator de risco</td>
+                                                        <td>intConc</td>
+                                                        <td>{{ infoAmb.fatRisco.intConc }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Técnica utilizada para medição</td>
+                                                        <td>tecMedicao</td>
+                                                        <td>{{ infoAmb.fatRisco.tecMedicao }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Utilização de EPC</td>
+                                                        <td>utilizEPC</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.utilizEPC }}
+                                                        {{ render(controller('RHXMLReaderBundle:S2240utilizepc:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.utilizEPC })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Utilização de EPI</td>
+                                                        <td>utilizEPI</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.utilizEPI }}
+                                                        {{ render(controller('RHXMLReaderBundle:S2240utilizepi:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.utilizEPI })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Descrição do EPC</td>
+                                                        <td>dscEpc</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epc.dscEpc }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>O EPC é eficaz ?</td>
+                                                        <td>eficEpc</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epc.eficEpc }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epc.eficEpc })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Certificado de Aprovação do EPI</td>
+                                                        <td>caEPI</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.caEPI }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>O EPI é eficaz ?</td>
+                                                        <td>eficEpi</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.eficEpi }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.eficEpi })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>EPI por inviabilidade técnica</td>
+                                                        <td>medProtecao</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.medProtecao }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.medProtecao })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Uso ininterrupto do EPI</td>
+                                                        <td>condFuncto</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.condFuncto }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.condFuncto })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Certificado de Aprovação</td>
+                                                        <td>przValid</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.przValid }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.przValid })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Periodicidade de troca</td>
+                                                        <td>periodicTroca</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.periodicTroca }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.periodicTroca })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Foi observada a higienização?</td>
+                                                        <td>higienizacao</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.higienizacao }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.higienizacao })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+
+        {% for altExpRisco in doc.infoExpRisco.altExpRisco %}
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Condições ambientais do trabalho - Alteração</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                    <tbody>
+
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>TAG XML</th>
+                                        <th>INFORMACAO</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Data</td>
+                                        <td>dtIniCondicao</td>
+                                        <td>{{ altExpRisco.dtAltCondicao | date('d-m-Y') }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {% for infoAmb in altExpRisco.infoAmb %}
+
+                                <div class="col-md-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="table-responsive">
+
+
+                                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                                    <tbody>
+
+                                                    <tr>
+                                                        <th>NOME</th>
+                                                        <th>TAG XML</th>
+                                                        <th>INFORMACAO</th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>código do ambiente de trabalho</td>
+                                                        <td>codAmb</td>
+                                                        <td>{{ infoAmb.codAmb}}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240codamb:findDescricaoByCodigoshow',{ 'codigo' : infoAmb.codAmb })) }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Descricão da Atividade</td>
+                                                        <td>dscAtivDes</td>
+                                                        <td>{{ infoAmb.infoAtiv.dscAtivDes }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Código do risco</td>
+                                                        <td>codFatRis</td>
+                                                        <td>{{ infoAmb.fatRisco.codFatRis }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240codfatris:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.codFatRis })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Exposição ao fator de risco</td>
+                                                        <td>intConc</td>
+                                                        <td>{{ infoAmb.fatRisco.intConc }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Técnica utilizada para medição</td>
+                                                        <td>tecMedicao</td>
+                                                        <td>{{ infoAmb.fatRisco.tecMedicao }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Utilização de EPC</td>
+                                                        <td>utilizEPC</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.utilizEPC }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240utilizepc:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.utilizEPC })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Utilização de EPI</td>
+                                                        <td>utilizEPI</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.utilizEPI }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240utilizepi:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.utilizEPI })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Descrição do EPC</td>
+                                                        <td>dscEpc</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epc.dscEpc }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>O EPC é eficaz ?</td>
+                                                        <td>eficEpc</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epc.eficEpc }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epc.eficEpc })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Certificado de Aprovação do EPI</td>
+                                                        <td>caEPI</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.caEPI }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>O EPI é eficaz ?</td>
+                                                        <td>eficEpi</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.eficEpi }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.eficEpi })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>EPI por inviabilidade técnica</td>
+                                                        <td>medProtecao</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.medProtecao }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.medProtecao })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Uso ininterrupto do EPI</td>
+                                                        <td>condFuncto</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.condFuncto }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.condFuncto })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Certificado de Aprovação</td>
+                                                        <td>przValid</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.przValid }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.przValid })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Periodicidade de troca</td>
+                                                        <td>periodicTroca</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.periodicTroca }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.periodicTroca })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Foi observada a higienização?</td>
+                                                        <td>higienizacao</td>
+                                                        <td>{{ infoAmb.fatRisco.epcEpi.epi.higienizacao }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2220eS2240SimNao:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.epi.higienizacao })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+        {% for fimExpRisco in doc.infoExpRisco.fimExpRisco %}
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Condições ambientais do trabalho - Fim</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+
+
+                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                    <tbody>
+
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>TAG XML</th>
+                                        <th>INFORMACAO</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Data</td>
+                                        <td>dtFimCondicao</td>
+                                        <td>{{ fimExpRisco.dtFimCondicao | date('d-m-Y') }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {% for infoAmb in fimExpRisco.infoAmb %}
+
+                                <div class="col-md-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="table-responsive">
+
+
+                                                <table class="table table-bordered table-condensed table-hover table-striped">
+                                                    <tbody>
+
+                                                    <tr>
+                                                        <th>NOME</th>
+                                                        <th>TAG XML</th>
+                                                        <th>INFORMACAO</th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Código do ambiente</td>
+                                                        <td>codAmb</td>
+                                                        <td>
+                                                        {{ render(controller('RHXMLReaderBundle:S2240codamb:findDescricaoByCodigoshow',{ 'codigo' : infoAmb.codAmb })) }}
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    {% endfor %}
+
+
+{% endblock %}

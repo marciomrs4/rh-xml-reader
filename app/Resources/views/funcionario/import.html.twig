@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Funcionário{% endblock %}
+
+{% block page_sub_title %} Importar {% endblock %}
+
+
+{% block content %}
+
+
+    <div class="row">
+        {% for message in app.session.flashBag.get('notice') %}
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <i class="fa fa-info"></i> {{ message.message }}. <i class="fa fa-smile-o"></i>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <a href="{{ path('funcionario_index') }}">
+                        <button class="btn btn-primary btn-sm">
+                            <span class="fa fa-backward"></span>
+                            Voltar
+                        </button>
+                    </a>
+
+                </div>
+
+                <div class="box-body">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="box collapsed-box">
+                <div class="box-header with-border">
+                    <div class="box-title">Informações importantes antes de importar.</div>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+
+
+                </div>
+                <div class="box-body">
+
+                    <div class="box-header">1 - Cada coluna deve ser informada conforme abaixo e separada por ";" ponto e virgula</div>
+                    <div class="box-header">2 - O sistema valida cada CPF e só insere caso ele não exista, se já existir será atualizado.</div>
+                    <div class="box-header">3 - Todos são criados com Status Ativo</div>
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Cpf</th>
+                                <th>Drt</th>
+                                <th>Pis</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Nome do funcionário</td>
+                                <td>CPf do funcionário</td>
+                                <td>Drt do funcionário</td>
+                                <td>Pis do funcionário</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="box
+                {% if usuariosJaExistentes %}
+                    box-primary
+                {% else %}
+                    box-default
+                {% endif %}
+                collapsed-box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Funcionários Atualizados</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" style="display: none;">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Cpf</th>
+                                <th>Drt</th>
+                                <th>Pis</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for funcionario in usuariosJaExistentes %}
+                                <tr>
+                                    <td>{{ funcionario.nome }}</td>
+                                    <td>{{ funcionario.cpf }}</td>
+                                    <td>{{ funcionario.drt }}</td>
+                                    <td>{{ funcionario.pis }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+        <div class="col-md-12">
+            <div class="box
+                {% if usuarioInseridos %}
+                    box-primary
+                {% else %}
+                    box-default
+                {% endif %}
+            collapsed-box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Funcionários Criados</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" style="display: none;">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Cpf</th>
+                                <th>Drt</th>
+                                <th>Pis</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for funcionario in usuarioInseridos %}
+                                <tr>
+                                    <td>{{ funcionario[1] }}</td>
+                                    <td>{{ funcionario[3] }}</td>
+                                    <td>{{ funcionario[0] }}</td>
+                                    <td>{{ funcionario[2] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+    </div>
+
+{% endblock %}

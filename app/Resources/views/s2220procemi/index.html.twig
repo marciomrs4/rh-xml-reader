@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{{  parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/rhxmlreader/css/dataTables.bootstrap.min.css") }}">
+{% endblock %}
+
+{% block title %}Recuros humanos{% endblock %}
+
+{% block page_title %}s2220procemi{% endblock %}
+
+{% block page_sub_title %} Listar {% endblock %}
+
+    {% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+
+                    <a href="{{ path('s2220procemi_new') }}">
+
+                            <button class="btn btn-primary btn-sm">
+                                <span class="fa fa-plus"></span>
+                                Novo
+                            </button>
+                        </a>
+                </div>
+
+                <div class="box-body">
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+
+                            <thead>
+                            <tr>
+                                <th>Ações</th>
+                                    <th>Id</th>
+                                    <th>Codigo</th>
+                                    <th>Descricao</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for s2220procemi in s2220procemis %}
+                            <tr>
+                                        <td>
+
+                                                <a href="{{ path('s2220procemi_show', { 'id': s2220procemi.id }) }}">
+                                                    <button class="btn btn-primary btn-xs">
+                                                        <span class="fa fa-show"></span>
+                                                        show
+                                                    </button>
+                                                </a>
+
+                                                <a href="{{ path('s2220procemi_edit', { 'id': s2220procemi.id }) }}">
+                                                    <button class="btn btn-primary btn-xs">
+                                                        <span class="fa fa-edit"></span>
+                                                        edit
+                                                    </button>
+                                                </a>
+                                        </td>
+                                        <td>{{ s2220procemi.id }}</td>
+                                        <td>{{ s2220procemi.codigo }}</td>
+                                        <td><a href="{{ path('s2220procemi_show', { 'id': s2220procemi.id }) }}">{{ s2220procemi.descricao }}</a></td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+        <script src='{{ asset('bundles/rhxmlreader/js/jquery.dataTables.min.js') }}'></script>
+        <script src='{{ asset('bundles/rhxmlreader/js/dataTables.bootstrap.min.js') }}'></script>
+
+        <script>
+
+            $(".table-datatable").DataTable({
+                "oLanguage": {
+                    "oPaginate":{
+                        "sPrevious": "Anterior ",
+                        "sNext": " Proximo "
+                    },
+                    "sLengthMenu": "Mostrar _MENU_ resultado(s)",
+                    "sSearch": "Pesquisar: ",
+                    "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ resultado(s)",
+                    "sInfoFiltered": "(Total: _MAX_ )",
+                    "sZeroRecords": "Resultado nao encontrado",
+                    "sInfoEmpty": "Sem resultados"
+                }
+            });
+
+        </script>
+
+ {% endblock %}
+

@@ -1,0 +1,51 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+ #       in_memory:
+ #           memory:
+      db_user_provider:
+          entity: { class: UserBundle:User, property: username }
+
+
+    encoders:
+        UserBundle\Entity\User: sha512
+
+    firewalls:
+        secured_area:
+            pattern: ^/
+            form_login:
+                check_path: /logincheck
+                login_path: /login
+                default_target_path: /
+            logout:
+                path: /logout
+                target: /login
+            remember_me:
+                secret: "%secret%"
+                name: rh
+                lifetime: 86400
+                always_remember_me: true
+            anonymous: ~
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            http_basic: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            #form_login: ~
+    access_control:
+        - { path: ^/funcionario, roles: ROLE_ADMIN }
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER, ROLE_ACCESS]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

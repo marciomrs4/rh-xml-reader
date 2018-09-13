@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{  parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/rhxmlreader/css/dataTables.bootstrap.min.css') }}">
+{% endblock %}
+
+{% block title %}Funcionarios{% endblock %}
+
+{% block page_title %}Funcionários{% endblock %}
+{% block page_sub_title %} Listar {% endblock %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <a href="{{ path('funcionario_new') }}">
+                        <button class="btn btn-primary btn-sm">
+                            <span class="fa fa-plus"></span>
+                            NOVO
+                        </button>
+                    </a>
+
+                    <a href="{{ path('funcionario_import') }}">
+                        <button class="btn btn-primary btn-sm">
+                            <span class="fa fa-file-text-o"></span>
+                            Importar
+                        </button>
+                    </a>
+
+                </div>
+
+                <div class="box-body">
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                            <thead>
+                            <tr>
+                                <th>Actions</th>
+                                <th>Nome</th>
+                                <th>Cpf</th>
+                                <th>Drt</th>
+                                <th>Pis</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            {% for funcionario in funcionarios %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('funcionario_show', { 'id': funcionario.id }) }}">
+                                            <button class="btn btn-primary btn-xs">
+                                                <span class="fa fa-eye"></span>
+                                            </button>
+                                        </a>
+                                        <a href="{{ path('funcionario_edit', { 'id': funcionario.id }) }}">
+                                            <button class="btn btn-primary btn-xs">
+                                                <span class="fa fa-edit"></span>
+                                            </button>
+                                        </a>
+                                    </td>
+                                    <td>{{ funcionario.nome }}</td>
+                                    <td>{{ funcionario.cpf }}</td>
+                                    <td>{{ funcionario.drt }}</td>
+                                    <td>{{ funcionario.pis }}</td>
+                                    <td>{% if funcionario.status %}Ativo{% else %}Inativo{% endif %}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/rhxmlreader/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bundles/rhxmlreader/js/dataTables.bootstrap.min.js') }}"></script>
+
+    <script>
+
+        $(".table-datatable").DataTable({
+            "oLanguage": {
+                "oPaginate":{
+                    "sPrevious": "Anterior ",
+                    "sNext": " Proximo "
+                },
+                "sLengthMenu": "Mostrar _MENU_ resultado(s)",
+                "sSearch": "Pesquisar: ",
+                "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ resultado(s)",
+                "sInfoFiltered": "(Total: _MAX_ )",
+                "sZeroRecords": "Resultado nao encontrado",
+                "sInfoEmpty": "Sem resultados"
+            }
+        });
+
+    </script>
+
+{% endblock %}

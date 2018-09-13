@@ -1,0 +1,150 @@
+rhxml_reader_s2220e_s2240_sim_nao:
+    resource: "@RHXMLReaderBundle/Controller/S2220eS2240SimNaoController.php"
+    type:     annotation
+
+rhxml_reader_s2240utilizepi:
+    resource: "@RHXMLReaderBundle/Controller/S2240utilizepiController.php"
+    type:     annotation
+
+rhxml_reader_s2240utilizepc:
+    resource: "@RHXMLReaderBundle/Controller/S2240utilizepcController.php"
+    type:     annotation
+
+rhxml_reader_s2240codfatris:
+    resource: "@RHXMLReaderBundle/Controller/S2240codfatrisController.php"
+    type:     annotation
+
+rhxml_reader_s2240codamb:
+    resource: "@RHXMLReaderBundle/Controller/S2240codambController.php"
+    type:     annotation
+
+rhxml_reader_s2240codamb:
+    resource: "@RHXMLReaderBundle/Controller/S2240codambController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+rhxml_reader_s2220interprexm:
+    resource: "@RHXMLReaderBundle/Controller/S2220interprexmController.php"
+    type:     annotation
+
+user_user:
+    resource: "@UserBundle/Controller/UserController.php"
+    type:     annotation
+
+user_user:
+    resource: "@UserBundle/Controller/UserController.php"
+    type:     annotation
+
+rhxml_reader:
+    resource: "@RHXMLReaderBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+rhxml_reader_s2220:
+    resource: "@RHXMLReaderBundle/Controller/S2220XMLReaderController.php"
+    type:     annotation
+
+rhxml_reader_s2240:
+    resource: "@RHXMLReaderBundle/Controller/S2240XMLReaderController.php"
+    type:     annotation
+
+login_user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+
+homepage:
+    path:     /
+    defaults: { _controller: RHXMLReaderBundle:Default:index }
