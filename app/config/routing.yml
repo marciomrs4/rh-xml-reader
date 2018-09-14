@@ -18,5 +18,6 @@ login_user:
     resource: "@UserBundle/Resources/config/routing.yml"
 
 homepage:
-    path:     /
-    defaults: { _controller: RHXMLReaderBundle:Default:index }
+    resource: "@RHXMLReaderBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix: /

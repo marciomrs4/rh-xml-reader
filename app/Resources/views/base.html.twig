@@ -30,7 +30,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="{{ path('homepage') }}" class="logo">
+        <a href="{{ path('home') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>R</b>H</span>
             <!-- logo for regular state and mobile devices -->
@@ -75,7 +75,7 @@
                             <li class="user-footer">
 
                                 <div class="pull-left">
-                                    <a href="{{ path('homepage') }}" class="btn btn-default btn-flat">
+                                    <a href="{{ path('home') }}" class="btn btn-default btn-flat">
                                         <span class="glyphicon glyphicon-home"></span>
                                         Home
                                     </a>
@@ -253,7 +253,10 @@
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
                         <li><a href="{{ path('admin_usuario_index') }}"><i class="fa fa-circle-o"></i> Acessos</a></li>
                     {% endif %}
+
+                    {% if is_granted('ROLE_USER') %}
                         <li><a href="{{ path('admin_my_usuario_edit',{ 'id' : app.user.id  }) }}"><i class="fa fa-circle-o"></i> Meu Acesso</a></li>
+                    {% endif %}
                     </ul>
                 </li>
 

@@ -45,8 +45,11 @@ security:
             #form_login: ~
     access_control:
         - { path: ^/admin/usuario/myuser/, roles: ROLE_USER }
+        - { path: ^/s2220reader, roles: ROLE_USER }
+        - { path: ^/s2240reader, roles: ROLE_USER }
+        - { path: ^/home, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
     role_hierarchy:
         ROLE_ADMIN: [ROLE_USER, ROLE_ACCESS]
