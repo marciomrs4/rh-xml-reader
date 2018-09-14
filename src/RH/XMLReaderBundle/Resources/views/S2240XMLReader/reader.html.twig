@@ -372,7 +372,7 @@
                                                         <td>Código do risco</td>
                                                         <td>codFatRis</td>
                                                         <td>{{ infoAmb.fatRisco.codFatRis }}
-                                                        {{ render(controller('RHXMLReaderBundle:S2240codfatris:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.codFatRis })) }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240codfatris:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.codFatRis })) }}
                                                         </td>
                                                     </tr>
 
@@ -392,7 +392,7 @@
                                                         <td>Utilização de EPC</td>
                                                         <td>utilizEPC</td>
                                                         <td>{{ infoAmb.fatRisco.epcEpi.utilizEPC }}
-                                                        {{ render(controller('RHXMLReaderBundle:S2240utilizepc:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.utilizEPC })) }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240utilizepc:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.utilizEPC })) }}
                                                         </td>
                                                     </tr>
 
@@ -400,7 +400,7 @@
                                                         <td>Utilização de EPI</td>
                                                         <td>utilizEPI</td>
                                                         <td>{{ infoAmb.fatRisco.epcEpi.utilizEPI }}
-                                                        {{ render(controller('RHXMLReaderBundle:S2240utilizepi:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.utilizEPI })) }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240utilizepi:findDescricaoByCodigoshow', { 'codigo' : infoAmb.fatRisco.epcEpi.utilizEPI })) }}
                                                         </td>
                                                     </tr>
 
@@ -732,7 +732,7 @@
                                                         <td>Código do ambiente</td>
                                                         <td>codAmb</td>
                                                         <td>
-                                                        {{ render(controller('RHXMLReaderBundle:S2240codamb:findDescricaoByCodigoshow',{ 'codigo' : infoAmb.codAmb })) }}
+                                                            {{ render(controller('RHXMLReaderBundle:S2240codamb:findDescricaoByCodigoshow',{ 'codigo' : infoAmb.codAmb })) }}
                                                         </td>
                                                     </tr>
 
@@ -756,5 +756,19 @@
 
     {% endfor %}
 
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $('#submit').submit(function(){
+
+            $(this).hide();
+
+        });
+
+    </script>
 
 {% endblock %}

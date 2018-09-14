@@ -22,122 +22,6 @@ rhxml_reader_s2220tpaso:
     resource: "@RHXMLReaderBundle/Controller/S2220tpasoController.php"
     type:     annotation
 
-rhxml_reader_s2220tp_amb:
-    resource: "@RHXMLReaderBundle/Controller/S2220tpAmbController.php"
-    type:     annotation
-
-rhxml_reader_s2220procemi:
-    resource: "@RHXMLReaderBundle/Controller/S2220procemiController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
-rhxml_reader_s2220ind_retif:
-    resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
-    type:     annotation
-
 rhxml_reader_s2220procemi:
     resource: "@RHXMLReaderBundle/Controller/S2220procemiController.php"
     type:     annotation
@@ -148,6 +32,26 @@ rhxml_reader_s2220tp_amb:
 
 rhxml_reader_s2220ind_retif:
     resource: "@RHXMLReaderBundle/Controller/S2220indRetifController.php"
+    type:     annotation
+
+rhxml_reader_s2220e_s2240_sim_nao:
+    resource: "@RHXMLReaderBundle/Controller/S2220eS2240SimNaoController.php"
+    type:     annotation
+
+rhxml_reader_s2240utilizepi:
+    resource: "@RHXMLReaderBundle/Controller/S2240utilizepiController.php"
+    type:     annotation
+
+rhxml_reader_s2240utilizepc:
+    resource: "@RHXMLReaderBundle/Controller/S2240utilizepcController.php"
+    type:     annotation
+
+rhxml_reader_s2240codfatris:
+    resource: "@RHXMLReaderBundle/Controller/S2240codfatrisController.php"
+    type:     annotation
+
+rhxml_reader_s2240codamb:
+    resource: "@RHXMLReaderBundle/Controller/S2240codambController.php"
     type:     annotation
 
 rhxml_reader_funcionario:
